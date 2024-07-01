@@ -24,7 +24,7 @@ db = client["Transliteration"]
 scrape_collection = db["bengali"]
 translations_collection = db["Translations"]
 
-total_documents = scrape_collection.count_documents({})
+# total_documents = scrape_collection.count_documents({})
 start_point = 26000  # Start from the 404th document
 
 # Fetch the next 1000 texts from the 'scrape' collection, starting from position 11
