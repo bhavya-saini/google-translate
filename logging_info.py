@@ -17,7 +17,7 @@ driver = webdriver.Chrome(options=options)
 driver.implicitly_wait(10)
 
 # Connect to MongoDB
-client = pymongo.MongoClient("mongodb+srv://bhavyasaini2005:Qwerty1120@cluster0.zc0dxik.mongodb.net/")
+client = pymongo.MongoClient("mongodb+srv://bhavyasaini2005:Qwerty1120@cluster0.zc0dxik.mongodb.net/Transliteration?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
 db = client["Transliteration"]
 scrape_collection = db["bengali"]
 translations_collection = db["Translations"]
