@@ -18,9 +18,9 @@ driver.implicitly_wait(10)
 
 # Connect to MongoDB
 client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["transliteration"]
-scrape_collection = db["scrape_bengali"]
-translations_collection = db["translations"]
+db = client["Transliteration"]
+scrape_collection = db["bengali"]
+translations_collection = db["Translations"]
 
 total_documents = scrape_collection.count_documents({})
 start_point = 26000  # Start from the 404th document
