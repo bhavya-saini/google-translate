@@ -4,21 +4,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
 import time
-# import pymongo
+import pymongo
 import logging
 import os
-from pymongo import MongoClient, errors
-from ssl import DEFAULT_CA_BUNDLE_PATH  # Or the path to your MongoDB Atlas CA certificate
 
-try:
-    client = MongoClient(
-        "mongodb+srv://bhavyasaini2005:Qwerty1120@cluster0.zc0dxik.mongodb.net/Transliteration?retryWrites=true&w=majority&tls=true",
-        tls=True,
-        tlsCAFile=DEFAULT_CA_BUNDLE_PATH
-    )
-    print(client.list_database_names())
-except errors.ServerSelectionTimeoutError as e:
-    print(f"Connection failed: {e}")
+
 
 # Configure logging
 logging.basicConfig(filename='translation.log', level=logging.INFO, 
@@ -29,7 +19,7 @@ driver = webdriver.Chrome(options=options)
 driver.implicitly_wait(10)
 
 # Connect to MongoDB
-# client = pymongo.MongoClient("mongodb+srv://bhavyasaini2005:Qwerty1120@cluster0.zc0dxik.mongodb.net/Transliteration?retryWrites=true&w=majority&tls=true&tlsAllowInvalidCertificates=true")
+client = pymongo.MongoClient("mongodb+srv://bhavyasaini2005:Qwerty1120@cluster0.zc0dxik.mongodb.net/")
 db = client["Transliteration"]
 scrape_collection = db["bengali"]
 translations_collection = db["Translations"]
