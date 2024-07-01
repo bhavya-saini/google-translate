@@ -20,9 +20,8 @@ jobs:
         
     - name: Setup Chrome WebDriver
       run: |
-        Invoke-WebRequest -Uri https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_win32.zip -OutFile chromedriver.zip
-        Expand-Archive chromedriver.zip -DestinationPath.
-        Move-Item.\chromedriver.exe C:\Windows\
+        options = webdriver.ChromeOptions()
+        driver = webdriver.Chrome(options=options)
         
     - name: Run script
       env:
