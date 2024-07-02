@@ -23,9 +23,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium pymongo
 
-      - name: Set up ChromeDriver
-        uses: nanasess/setup-chromedriver@v1
+      # - name: Set up ChromeDriver
+      #   uses: nanasess/setup-chromedriver@v1
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+          google-chrome --version
 
+      - name: Install ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          wget https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          chromedriver --version
+
+      - name: Start MongoDB service
+        run: sudo service mongod start
+        
       - name: Run the Selenium script
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
