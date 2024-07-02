@@ -19,13 +19,13 @@ driver = webdriver.Chrome(options=options)
 driver.implicitly_wait(10)
 
 # Connect to MongoDB
-client = pymongo.MongoClient("mongodb+srv://bhavyasaini2005:Qwerty1120@cluster0.zc0dxik.mongodb.net/")
+client = pymongo.MongoClient("mongodb+srv://bhavyasaini2005:Qwerty1120@cluster0.zc0dxik.mongodb.net/Transliteration?retryWrites=true&w=majority")
 db = client["Transliteration"]
 scrape_collection = db["bengali"]
 translations_collection = db["Translations"]
 
 # total_documents = scrape_collection.count_documents({})
-start_point = 26000  # Start from the 404th document
+start_point = 30500  # Start from the 404th document
 
 # Fetch the next 1000 texts from the 'scrape' collection, starting from position 11
 text = scrape_collection.find().skip(start_point).limit(100)
