@@ -4,10 +4,9 @@ on: [push]
 
 jobs:
   build:
-    runs-on: windows-latest  # Changed to windows-latest for Windows OS compatibility
+    runs-on: ubuntu-latest  
     steps:
     - uses: actions/checkout@v2
-    
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
@@ -23,9 +22,7 @@ jobs:
         Invoke-WebRequest -Uri https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_win32.zip -OutFile chromedriver.zip
         Expand-Archive chromedriver.zip -DestinationPath.
         $env:PATH += ";$(Get-Location)"
-
-
-        
+ 
     - name: Run script
       env:
         MONGO_URI: ${{ secrets.MONGO_URI }}  # Accessing the secret
